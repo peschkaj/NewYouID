@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYouID", "NewYouID\NewYouID.csproj", "{5C57B136-2C6E-47C3-8087-99477254373E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYouIDTests", "NewYouIDTests\NewYouIDTests.csproj", "{A65E7A5D-FD9B-4037-8EBA-4EEDD5CF42C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C57B136-2C6E-47C3-8087-99477254373E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C57B136-2C6E-47C3-8087-99477254373E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C57B136-2C6E-47C3-8087-99477254373E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C57B136-2C6E-47C3-8087-99477254373E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A65E7A5D-FD9B-4037-8EBA-4EEDD5CF42C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A65E7A5D-FD9B-4037-8EBA-4EEDD5CF42C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A65E7A5D-FD9B-4037-8EBA-4EEDD5CF42C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A65E7A5D-FD9B-4037-8EBA-4EEDD5CF42C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

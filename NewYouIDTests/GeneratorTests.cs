@@ -11,11 +11,21 @@ namespace NewYouIDTests
         }
 
         [Test]
-        public void Test1()
+        public void MillisecondGeneratorCreatesSequentialIds()
         {
-            var g = new Generator();
-            var first = g.NextID();
-            var second = g.NextID();
+            var g = UuidGeneratorFactory.CreateUuidGenerator(UuidGeneratorFactory.Precision.Millisecond);
+            var first = g.NextId();
+            var second = g.NextId();
+            
+            Assert.Greater(second, first);
+        }
+
+        [Test]
+        public void MicrosecondGeneratorCreatesSequentialIds()
+        {
+            var g = UuidGeneratorFactory.CreateUuidGenerator(UuidGeneratorFactory.Precision.Microsecond);
+            var first = g.NextId();
+            var second = g.NextId();
             
             Assert.Greater(second, first);
         }

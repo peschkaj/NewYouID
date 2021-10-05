@@ -10,25 +10,15 @@ namespace NewYouID
             Microsecond
         }
 
-        public static IUuidGenerator CreateUuidGenerator(Precision precision, ulong? identifier = null)
+        public static IUuidGenerator CreateUuidGenerator(Precision precision, ulong? identifier = null, IUtcDateTimeProvider utcDateTimeProvider = null)
         {
             if (precision == Precision.Millisecond)
             {
-                if (identifier.HasValue)
-                {
-                    return new MillisecondPrecisionGenerator(identifier.Value);
-                }
-
-                return new MillisecondPrecisionGenerator();
+                return new MillisecondPrecisionGenerator(identifier, utcDateTimeProvider);
             }
             else
             {
-                if (identifier.HasValue)
-                {
-                    return new MicrosecondPrecisionGenerator(identifier.Value);
-                }
-
-                return new MicrosecondPrecisionGenerator();
+                return new MicrosecondPrecisionGenerator(identifier, utcDateTimeProvider);
             }
             
         }

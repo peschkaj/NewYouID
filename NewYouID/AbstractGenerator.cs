@@ -16,6 +16,8 @@ namespace NewYouID
         protected const ulong TwelveBitMask = 0b_00000000_00000000_00001111_11111111;
         protected const byte Version = 0b_0111;
         
+        internal IUtcDateTimeProvider _utcDateTimeProvider;
+        
         public abstract BigInteger NextId();
     }
 }

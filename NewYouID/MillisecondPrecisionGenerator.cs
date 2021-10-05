@@ -46,25 +46,26 @@ namespace NewYouID
         private readonly ulong _low;
 
         #region ctor
-        public MillisecondPrecisionGenerator()
+        public MillisecondPrecisionGenerator(ulong? identifier = null, IUtcDateTimeProvider utcDateTimeProvider = null)
         {
-            var buffer = new byte[sizeof(ulong)];
-            var random = new Random();
-            random.NextBytes(buffer);
+            if (!identifier.HasValue)
+            {
+                var buffer = new byte[sizeof(ulong)];
+                var random = new Random();
+                random.NextBytes(buffer);
+                
+                identifier = BitConverter.ToUInt64(buffer, 0);
+            }
             // Only need 62-bits
-            _low = UuidVariant & (BitConverter.ToUInt64(buffer, 0) & Low62Mask);
-        }
-
-        public MillisecondPrecisionGenerator(ulong identifier)
-        {
-            // Only need 62-bits
-            _low = UuidVariant & (identifier & Low62Mask);
+            _low = UuidVariant & (identifier.Value & Low62Mask);
+            
+            _utcDateTimeProvider = utcDateTimeProvider ?? UtcDateTimeProvider.Instance;
         }
         #endregion
 
         public override BigInteger NextId()
         {
-            var currentDiffInMs = (ulong)(DateTime.UtcNow - DateTime.UnixEpoch).TotalMilliseconds;
+            var currentDiffInMs = (ulong)(_utcDateTimeProvider.UtcNow - DateTime.UnixEpoch).TotalMilliseconds;
 
             if (currentDiffInMs > _lastUpdateInMs)
             {

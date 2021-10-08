@@ -1,6 +1,6 @@
 # NewYouID
 
-[UUIDv7 generator for .NET 5](https://datatracker.ietf.org/doc/html/draft-peabody-dispatch-new-uuid-format-01#section-4.4)
+[RFC 4122 (draft) UUIDv7](https://datatracker.ietf.org/doc/html/draft-peabody-dispatch-new-uuid-format-01#section-4.4) generator for .NET 5
 
 Generate 128-bit sequential IDs like a boss with this .NET library.
 

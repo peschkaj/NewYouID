@@ -57,7 +57,7 @@ namespace NewYouID
                 identifier = BitConverter.ToUInt64(buffer, 0);
             }
             // Only need 62-bits
-            _low = UuidVariant & (identifier.Value & Low62Mask);
+            _low = (UuidVariant << UuidVariantShift)  | (identifier.Value & Low62Mask);
             
             _utcDateTimeProvider = utcDateTimeProvider ?? UtcDateTimeProvider.Instance;
         }
@@ -80,7 +80,7 @@ namespace NewYouID
             var unixts = (ulong)(_lastUpdateInMs * 0.001);
             var msec = (ulong)(_lastUpdateInMs - (unixts * 1000));
             
-            var high = (unixts << 28) 
+            var high = ((unixts & MillisecondUnixTsMask) << 28) 
                        | ((msec & TwelveBitMask) << 16) 
                        | (Version << 12) 
                        | (_seq & TwelveBitMask);

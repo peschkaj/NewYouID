@@ -60,7 +60,7 @@ namespace NewYouID
                 identifier = BitConverter.ToUInt64(buffer, 0);
             }
             
-            _low = UuidVariant & (identifier.Value & Low40Mask);
+            _low = (UuidVariant << UuidVariantShift) | (identifier.Value & Low40Mask);
 
             _utcDateTimeProvider = utcDateTimeProvider ?? UtcDateTimeProvider.Instance;
         }
@@ -83,12 +83,12 @@ namespace NewYouID
             var unixts = _lastUpdate / TimeSpan.TicksPerMillisecond;
             var usec = (_lastUpdate - (unixts * TimeSpan.TicksPerMillisecond)) & MicrosecondUnixTsMask;
 
-            var high = ((unixts & ThirtySixBitMask) << 28) 
+            var high = ((unixts & MicrosecondUnixTsMask) << 32) 
                        | ((usec >> 12) << 16) 
                        | (Version << 12) 
                        | (usec & TwelveBitMask);
 
-            var low = _low | (_seq << 40);
+            var low = _low | ((_seq & FourteenBitMask) << 40);
             
             var bi = new BigInteger(high);
             bi <<= 64;
